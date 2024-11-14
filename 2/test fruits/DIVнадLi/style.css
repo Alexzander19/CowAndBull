@@ -1,0 +1,75 @@
+.wrapper{
+    color: brown;
+    background-color: red;
+    padding: 1em;
+    margin: 1em;
+
+}
+
+.each-wrapper{
+    background-color: aqua;
+    padding: 0em;
+    padding-left: 3em;
+    margin: 1em;
+       
+}
+/*
+ol li::before{
+    display: inline;
+    content: "  ";
+  
+    
+}
+*/
+
+/* .....................................................................
+        ПОПЫТКА УВЕЛИЧИТЬ РАССТОЯНИЕ МЕЖДУ МАРКЕРОМ И ТЕКСТОМ 
+--------------------------------------------------------------------- */
+
+/*
+li {
+    list-style: none; Убираем исходные маркеры 
+   }
+  
+   li::marker {
+    content: counter(number) '►     '; /* Символ маркера 
+    counter-increment: 1;
+  }*/
+  /*
+    counter-increment: 1;
+    width: 7em;
+    color: red; /* Цвет маркера *
+    padding-left: 5em; /* Расстояние от маркера до текста 
+   }
+*/
+
+/*
+ol { list-style-type: none;
+    counter-reset: number; }
+   ol li::marker {
+   content: counter(1) ") ";
+    counter-increment: number; 
+    margin-right:  15em;
+    }
+*/    
+    
+/*
+    По какой-то причине, то нет нумерации вообще, то только нули
+
+ ----------------------------------------------------------------- */
+
+li{
+    background-color:  aliceblue;
+    padding: 1em ;
+    
+    margin: 0em;
+   
+    width: min-content; /*длина относительно длины текста + padding */
+    
+    /* border: 0em; */
+
+   /* list-style-position: inside;*/
+
+   
+    
+}

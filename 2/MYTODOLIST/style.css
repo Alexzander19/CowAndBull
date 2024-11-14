@@ -1,0 +1,81 @@
+
+div.mytodolist{
+    background-color: rgb(178, 178, 189);
+    
+    width: 55em;
+    height: 51em;
+
+}
+
+.mytodolist  h1{
+    margin-left: 2em; /*  отступ такой же, как у тега UL*/
+    padding-top: 0.5em;
+}
+
+
+
+.mytodolist ul {
+
+    /* width: 70%; */
+    
+    list-style-position: inside; /* Иконка под тем же фоном, что текст */
+    font-size:x-large;
+    margin: 2em;
+    padding: 0;
+    width: 30em;
+}
+
+.mytodolist ul li{
+    /* padding-left: 2em; */
+    padding: 0.5em 0em 0.5em 2em;
+    
+    width: 30em;
+    
+    list-style-image: url(materials/unchecked_16.png);
+}
+
+.mytodolist ul li::after {  /* ставим крестик в конце через псевдо-элемент*/
+    content:  "\2717"; /*крестик*/
+    color: red;
+    padding-left: 1em;
+    
+}
+
+
+
+.mytodolist ul li.done { /* маркер и фон сделанных*/
+    list-style-image: url(materials/checked_16.png);
+    background-color: gray;
+    
+
+}
+.mytodolist ul li.done span{ /* перечеркиваем текс сделанных*/
+    text-decoration: line-through;
+
+}
+
+.mytodolist ul li:nth-child(odd) {  /* НЕЧЕТНЫЕ*/
+    
+    background-color: #9cf;
+    
+}
+
+.mytodolist ul li:nth-child(even) { /* ЧЕТНЫЕ*/
+        
+    background-color: #9cc ;
+
+}
+
+/* НЕЖДАНЧИК Чтобы выделенный фон сделать серыv нужно также обратиться к четным и нечетным   */
+
+.mytodolist ul li.done:nth-child(odd) {
+        
+    background-color:gray ;
+            
+    }
+
+.mytodolist ul li.done:nth-child(even) {
+        
+    background-color:gray ;
+                
+}

@@ -1,0 +1,76 @@
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 100vh; 
+}
+
+#main { 
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+  
+  width: 740px;  /* только для размера 3*3 */
+  height: 563px;
+} 
+
+.number {
+  position: absolute;
+
+
+} 
+
+#main div div img {
+
+  border-radius: 4px;
+
+  z-index: 1;
+
+  width: 236px;
+
+}
+
+#main div {
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+
+} 
+
+.button {
+  
+
+  background-color: aquamarine;
+
+  height: 30px;
+
+  border-radius: 5px;
+
+  padding: 7px;
+
+  justify-content: right;
+
+  
+
+}
+
+.select{
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+
+}
+

@@ -1,0 +1,410 @@
+
+/* Подключаем шрифт FORMULAR. ОН НЕ ПОДДЕРЖИВАЕТ СИМВОЛЫ ()  + И ДРУГИЕ */
+@import url('https://fonts.cdnfonts.com/css/formular'); 
+
+/* НАМУЧИЛСЯ С ЭТИМ ПОКА ДОШЛО, ЧТО ЕСЛИ ПОСТАВИТЬ ДРУГОЙ ШРИФТ, ВОЗМОЖНО СКОБКИ ПОЯВЯТСЯ - ТАК И ЕСТЬ. */
+
+
+body{
+ 
+ font-family: formular, Arial, Helvetica, sans-serif;  
+}
+
+
+.head-section{
+    background: #F9FAFB;
+
+}
+
+
+/* <div> <Логотип, FromDoard Delivery> </div> <div> маленький прайс, телефон, звонгки по россии бесплатны<d/iv> */
+.top-div {
+  
+    display: flex; 
+    flex-direction: row; /* Каждый новый тег в строку слева направо*/
+    flex-wrap: wrap;     /* Разрешаем перенос внутри тегов, что при сжатии экрана не сжимает текст*/
+    margin: 20px 100px ;
+
+    padding-top: 0;
+    padding-bottom: 0;
+
+}
+
+
+.top-div >*{
+  
+    display: flex; 
+    flex-direction: row; /* Каждый новый тег в строку слева направо*/
+ 
+
+}
+
+.logo{ /* не даем логотипу деформироваться при сжатии экрана*/
+    width: 50px;
+    height: 80px;
+}
+
+/* <Логотип, И ТЕКСТ FromBoard Delivery */
+.logo-and-text{
+    margin: 0px auto 0px 0; /* Отталкивает от себя small price. на максимальное расстояние (Все нули, кроме справа) */
+                            /* Будет время переделаю через параметры display flex*/
+    font-size: 24px;
+    font-weight: 900;
+} 
+.logo-and-text h3{
+    
+    font-size: 24px;
+    font-weight: 900;
+    text-wrap: nowrap;
+} 
+
+/*  <p> Доставляем товары из заграницы в Россию</p>
+    <p> Стоимость от 550 рублей за заказ</p>
+    <p> 1 $=93 Р| 1Э =99 P | 1Y=13P ...(маленикий прайс)*/
+
+.small-price p{
+    margin: 0; /*убираем пробелы между строк  */
+    padding-right: 1em;
+    text-align: right; /*выравнивание текста по правому краю */
+    font-weight: 24px;
+    font-size: 16px;
+} 
+/* маленький прайс, телефон, звонки по россии бесплатны1 */
+.small-price {
+    display: flex;
+    align-items: center; /* Центрирование по вертикали*/
+    
+}
+
+/* Вертикальная линия только у первого блока DIV */
+.small-price >div:first-child{
+    display: flex;
+    justify-content: center; 
+    /* align-items: center; Центрирование по вертикали */
+    
+    border-right: 2px solid rgba(167, 139, 250, 1);
+    /* height: 90px;  */
+    padding-top: 7px;
+    padding-bottom: 7px; 
+    /* margin-top: 0;
+    margin-bottom: 0; */
+    flex-direction: column; /* Каждый новый тег в строку слева направо*/
+
+}
+
+/* +7 (800) 123 45-67 */
+.tel-wrapper h1 {
+    font-size: 36px;
+    font-weight: 900;
+    margin: 0;
+    margin-left: 10px;
+    /* width: 341px; */
+}
+/* FORMULAR не поддерживает скобки и другие спецсимволы */
+.tel-wrapper span{ /* Хорошо бы  сделать, чтобы настройки размеров шрифта не повторять, а наследовать*/
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+     
+}
+
+
+/* Звонки по россии бесплатны */
+.tel-wrapper h2{
+    font-size: 24px;
+    font-weight: 300;
+    margin: 0;
+    margin-left: 10px;
+}
+
+
+
+/* Калькулятор  о нас  гарантии отзывы    */
+
+.about-div{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.about{
+    text-decoration: none;
+    font-weight: 700;
+
+  
+}
+
+/* Кнопка оставить заявку */
+.batton-application{
+
+    white-space: nowrap;
+    padding: 10px 28px 10px 28px;
+    background-color: #8B5CF6;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(249, 250, 251, 1);
+    width: min-content;
+
+    margin: 0 0 0 auto ;
+    border-radius: 4px;
+}
+
+
+
+/* ____________________________________________________________________________________________________________
+
+***************************                 СЕКЦИЯ 2 MAIN            ************************************
+_____________________________________________________________________________________________________________ */
+
+.main-section{
+   background: #E5E7EB; 
+}
+
+
+.div-hero{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* 16.05 РАЗРЕШАЕМ ПЕРЕНОС- ТОГДА НЕ ПОЯВЛЯЕТСЯ СКРОЛ*/
+    justify-content: center; /* выравнивание по горизонтали*/
+    align-items: flex-end; /* ориантация по вертикали (при FLEX-direction -row) прижимает вниз*/
+
+}
+
+
+
+
+.div-no-problem p{
+
+    margin: 0; /*убираем пробелы между строк  */
+    padding-right: 1em;
+    text-align: right; /*выравнивание текста по правому краю */
+    font-weight: 900px;
+    font-size: 36px; 
+    text-align: left;
+} 
+
+.div-cheap-and-easy p{
+    margin: 0; /*убираем пробелы между строк  */
+    padding-right: 1em;
+    text-align: right; /*выравнивание текста по правому краю */
+    font-weight: 400px;
+    font-size: 20px;
+    text-align: left;
+
+
+}
+
+
+
+.div-main-calc{
+    margin-left: 25px;
+}
+
+
+.div-calc{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 27px;
+    gap: 28px;  
+    margin-bottom: 0;
+}
+.div-calc >div{
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+}
+
+.div-input-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F9FAFB;
+    border-radius: 16px;
+    padding-bottom: 30px;
+   
+    
+}
+
+
+
+
+.div-input-button div input{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    gap: 4px;
+
+
+    width: 250px;
+    height: 15px;
+
+    border: 2px solid #111827;
+    border-radius: 4px;
+
+}
+
+/* 16.05.24 */
+/* .div-input-button div input:first-child ОТБОЙ. ВСЯ ЛЕВАЯ КОЛОНКА INPUT ПОТЕРЯЛА ОТСТУПЫ ПРОЗРАЧНОГО ТЕКСТА СЛЕВА....
+    width: 100%;
+    padding: 12px 0 12px 0; /* Переопределяем,чтобы слева справа растянулся на родительский div
+} */
+
+/* ТОГДА ПРИСВОЕМ ПЕРВОМУ INPUT КЛАСС*/
+
+ 
+.div-input-button div input.long-input{ /*И ЗДЕСЬ МНОГО ИНТЕРЕСНОГО ЕСЛИ НЕ ПРОПИСАТЬ РОДИТЕЛЬСКИЕ DIV ИЛИ КТО ТАМ СВЕРХУ,*/
+    padding: 12px 0 12px 0;             /*А ПРОСТО .LONG-INPUT, ТО ЭТИ ЗНАЧЕНИЯ ПЕРЕОПРЕДЕЛЯЮТСЯ. */
+    width: 100%;                        /*а ЕЩЕ ПРОПАЛ ПРОБЕЛ СЛЕВА ОТ ПРОЗРАЧНОГО 'ИМЯ'*/
+} 
+
+.div-input-button a{
+    white-space: nowrap;
+    padding: 10px 0px;  /*убираем отсупы справа, слева, тогда width 100% на весь родительский DIV
+    margin-left: 12px; /* как ВНЕЗАПНО прояснилось кнопка находится в другом DIV от полей ввода
+    margin-right: 27px; /* Можно обернуть в один DIV, так было бы надежней. Но я задам одинаковые отступы
+                        /* Отступы верх/низ на всякий случай не трогаю И... ЭТО НЕ РАБОТАЕТ*/
+    background-color: #8B5CF6;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(249, 250, 251, 1);
+    width: calc(100% - 54px);
+    border-radius: 4px;
+    text-align: center;
+
+    /* margin: 0 0 0 auto ; */
+
+}
+
+.flex {
+    display: flex;
+  }
+  
+  /* .grid { */
+    .garanty-list{
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+
+
+
+.container {
+    margin: 0 auto;
+    padding: 36px 44px; 
+}
+
+
+
+  
+.garanty-content {
+    margin-bottom: 36px;
+}
+
+.garanty-text{ 
+    grid-column: 4 / 6 span;
+    grid-column-start: 4;
+    grid-column-end: span 6;
+    text-align: center;
+}
+
+
+
+
+
+
+
+#benefits-board {
+    background-image: url(img/svg/benefits-board.svg);
+  }
+  
+  #benefits-package {
+    background-image: url(img/svg/benefits-package.svg);
+  }
+  
+  #benefits-delivery {
+    background-image: url(img/svg/benefits-delivery.svg);
+  }
+  
+  #benefits-best-support {
+    background-image: url(img/svg/benefits-best-support.svg);
+  }
+  
+  #benefits-clear-info {
+    background-image: url(img/svg/benefits-clear-info.svg);
+  }
+  
+  #benefits-garantee {
+    background-image: url(img/svg/benefits-garantee.svg);
+  }
+
+
+  .benefits-title {
+        text-align: center;
+        margin-bottom: 24px;
+
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 36px;
+        margin: 0;
+    
+    }
+
+    
+  .benefits-item {
+      grid-column: 4 span;
+      align-items: center;
+      padding: 24px;
+      padding-left: 148px; /* дает отступ от фонового рисунка 148-126 = 22px*/
+      background-position: left center; /* фоновый рисунок слева по вертикаль центру*/
+      background-repeat: no-repeat; /* фоновый рмсунок не повторяется */
+      background-size: 126px 126px; /* размер фонового рисунка (чуть сжимается)*/
+  
+      
+    }
+  
+    .benefits-subtitle {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 32px;
+      margin: 0;
+      margin-bottom: 12px;
+      color: var(--black-color);
+  
+      
+    }
+    
+  
+    .benefits-descr {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin: 0;
+      color: var(--black-color);
+    }
+  
+  .ul-benefits{
+    display: grid;
+    list-style: none;
+    grid-template-columns: repeat(12, 1fr);
+
+    gap: 24px;
+    }
+
+    .list-reset{
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+  }
+
+  .footer {
+    background: #111827;
+  }

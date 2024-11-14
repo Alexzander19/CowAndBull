@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игарть Коров-Быков</title>
+    
+</head>
+
+<style> 
+  table {
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  
+  caption {
+     /* caption-side: bottom; */
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  thead,
+  tfoot {
+    background-color: rgb(228 240 245);
+  }
+  
+  th,
+  td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+  }
+  
+  td:last-of-type {
+    text-align: center;
+  }
+  
+  tbody > tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+  }
+  
+  tfoot th {
+    text-align: left;
+  }
+  
+  tfoot td {
+    font-weight: bold;
+  }
+
+  
+  #timetext {
+    float: right;
+
+  }
+
+
+  #showNumImTired{
+    float: right;
+  }
+
+
+</style>
+<script> // Функция считает коров и быков
+  //NUM1 число загаданное
+  //NUM2  число проверяемое на соответствие загаданному
+  // хотя нет разницы какое из них какое число
+  
+  
+  function countCowBull(NUM1,NUM2){
+  
+  let cow = 0;
+  let bull = 0;
+  
+  
+  for(let i = 0; i < NUM1.length; i++ ){
+      for(let j = 0; j < NUM2.length; j++){
+          if(NUM1[i] == NUM2[j]){
+              if(i != j)
+                  cow ++;
+              else
+                  bull ++;
+          }
+  
+      }
+      
+  }
+  
+  
+  return [cow,bull]
+  }
+  
+  // Функция генерирует массив - число, с заданными числами на своих позициях (Массив withNum, но не предлагает числа из массива but
+  // x - на это место или любое другое, где в массиве withNum не число от 0 до 9
+  
+  function generateWithBut( withNum,but /* повтор да или нет*/ ){
+  
+      // исклюяаем повтор чисел, которые есть в withNum
+      for(let i = 0; i < withNum.length; i++)
+          if(withNum[i] >= 0 && withNum[i] <= 9)
+              but.push(withNum[i]) // если числа в but будут дублироватьс - это допустимо
+      
+  
+  
+      for(let iii = 0 ; iii < withNum.length; iii++){
+  
+          // генерируем число от 0 до 9
+          let randNum;
+          
+          let i = 0;
+          let repeatFind = false;
+          
+          while( i < 100){// если более 100 раз прошоли цикл - значит подберем 'вручную' (наверное массив but состоит из 9 цифр из 10)
+              
+              repeatFind = false; 
+              randNum = Math.round(Math.random()*9)
+              
+              // проверяем не совпадает ли случайное число с запрещенными (массив but)
+          
+              for(let j = 0; j < but.length; j++){
+                  if(randNum == but[j])
+                      repeatFind = true;
+  
+              }
+  
+  
+              // если совпадает - снова генерируем
+              if(!repeatFind){
+                  but.push(randNum) // исключаем повтор сгенерированных цифр
+                  break; // если прошли цикл и ненашли совпадения, то значит нашли нужную цифру 
+              }
+  
+  
+              // если более 100 раз прошоли цикл - значит подберем 'вручную' (наверное массив but состоит из 9 цифр из 10)
+              i += 1; 
+  
+          }
+  
+  
+          if(i >= 100){
+  
+              for(randNum = 0; randNum < 10; randNum++){
+                  repeatFind = false;
+                  for(let k = 0; k < but.length; k ++){
+                      if(randNum == but[k]){
+                          repeatFind = true;
+                          break; // переходим к следующему (randNum += 1)
+                      }
+                      
+                  }
+  
+                  if(!repeatFind){ // если repeatFind == false, то значит мы нашли randNum
+                      console.log('Внимание! Случайное чило : '+ randNum + ' не случайное! Подобрали по возрастанию от 0')
+                      break;
+                  }
+  
+  
+              }
+  
+              if(randNum >= 10){
+                  alert('ВНИМАНИЕ! ОГАРНИЧЕНИЕ В ВЫБОРЕ ЧИСЕЛ НЕ ДАЕТ ПОДОБРАТЬ ЧИСЛО')
+                  randNum = 0;
+  
+              }
+  
+  
+  
+          }
+  
+  
+  
+  
+          // ставим сгенерированное число в массив, где не число от 0 до 9
+          console.log(randNum)
+          if(withNum[iii] < 0 || withNum[iii] > 9){ // если не число от 9 дл 9
+              withNum[iii] = randNum;
+              console.log('withNum['+ iii +'] = ' + withNum[iii] )
+              // поставили сгенерированное число в итоговый массив и переходим к генерации следующего
+  
+          }
+      }
+  
+      return withNum; 
+  // Нужно исключить совпадение с числами из массива withNum
+  
+  }
+  
+  function cowBullUserTry(){
+  
+      let userNUM = document.getElementById('userInput')
+          console.log(userNUM.value)
+      
+      cowBull = countCowBull(userNUM.value,computerNUM)
+      
+      step +=1;
+      addRow('myTable',userNUM.value, cowBull);
+      
+      }
+  
+  
+  
+  function addRow(id,userNUM, cowBull){
+  
+  
+  
+      let tbody = document.getElementById(id).getElementsByTagName("tbody")[0];
+      let row = document.createElement("tr")
+      
+      let td1 = document.createElement("td")
+      td1.appendChild(document.createTextNode(userNUM))
+      
+      let td2 = document.createElement("td")
+      td2.appendChild (document.createTextNode(cowBull[0] + ' коров ' + cowBull[1] + ' быков '))
+      
+      let td3 = document.createElement('td')
+      td3.appendChild(document.createTextNode(step))
+     
+      row.appendChild(td1);
+      row.appendChild(td2);
+      row.appendChild(td3);
+      tbody.appendChild(row);
+  
+  
+      let timeSpend = document.getElementById('time')
+  
+      console.log(timeStart)
+      timeSpend.innerHTML = Math.round(((performance.now() - timeStart) / 1000 / 60 )) + ' мин. ' + Math.round(((performance.now() - timeStart) / 1000 )) + ' cек.';
+  
+      
+  }
+  
+  function showNumImTired(){
+    let showMeNum = document.getElementById('ShowMeNum')
+
+    showMeNum.innerHTML = computerNUM;
+
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </script>
+<script > // Игра в Коров и Быков
+  // Хочу написать, но пока не могу придумать алгоритм поиска загаданного числа
+  
+  
+  // цифры в звгаданном числе не должны повторяться
+  
+  let computerNUM = generateWithBut( [-1,-10,-3,-10],[]) // четырех значное число, кроме нулей
+  
+  console.log('Сгенерированное число: '+ computerNUM)
+  
+  let userMindNUM = '5678' // Это число должна найти программа
+  
+  let timeStart = performance.now();
+  
+  let step = 0;
+  let cow = 0; // корова, если такая цифра есть, но стоит не на месте
+  let bull = 0; // бык, если цифра стоит на своем месте
+  let cowBull = [];
+  let bullInUserNUM = 0;
+  let cowInUserNUM = 0;
+  
+  /*
+  Двухмерный Массив результата поиска значений
+  
+  для каждой цифры загаданного числа - есть массив всех чисел от 0 до 9
+  Индекс массива - это и есть число, которое нас интересует, а вот его значение:
+       0  не знаем та цифра или нет
+      -1  этой цифры здесь точно нет
+       1 эта цифра на своем месте
+       2 эта цифра пробовалась (называлась)  
+  
+  
+  */ 
+  
+  
+  
+  let massToFind = [];
+  
+  for(let i = 0; i < userMindNUM.length ; i ++){
+      massToFind[i] = [];
+      for(let j = 0; j < 10 ; j ++)
+          massToFind[i].push(0) // пока что про все цифры не знаем
+  
+  }
+          
+  console.log(massToFind) </script>
+
+<body>
+
+
+
+
+
+
+
+<table  id="myTable">
+    <caption>
+      ИГРА в КОРОВ-БЫКОВ (любые 4 цифры от 0 до 9)
+    </caption>
+    <thead>
+      <tr>
+        <th id = 'ShowMeNum' scope="col">ВЫ НАЗВАЛИ ЧИСЛО</th>
+        <th scope="col">ЗДЕСЬ КОРОВ / БЫКОВ</th>
+        <th scope="col">ШАГ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <th scope="row">Chris</th>
+        <td>HTML tables</td>
+        <td>22</td>
+      </tr>
+      <tr>
+        <th scope="row">Dennis</th>
+        <td>Web accessibility</td>
+        <td>45</td>
+      </tr>
+      <tr>
+        <th scope="row">Sarah</th>
+        <td>JavaScript frameworks</td>
+        <td>29</td>
+      </tr>
+      <tr>
+        <th scope="row">Karen</th>
+        <td>Web performance</td>
+        <td>36</td>
+      </tr> -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="row" colspan="2">  <input id = 'userInput'> <span id = 'timetext'> прошло времени: </span></input>  </th>
+        <td id = 'time'></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <p>
+    <a href="javascript://" onclick="cowBullUserTry();return false;">ПРОВЕРИТЬ</a>
+    <a id = 'showNumImTired' href="javascript://" onclick="showNumImTired();return false;">СДАЮСЬ ПОКАЖИ</a>
+</p>
+
+
+
+    
+</body>
+
+
+
+</html>

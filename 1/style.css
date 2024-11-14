@@ -1,0 +1,37 @@
+#zagolovok{
+    color: #3f3e81;  /* Цвета текста и фона определены через онлайн ресурс https://sanstv.ru */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    margin-left: 250pt;
+   
+}
+
+.glavi{
+    color: #7b8d9c;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.text{
+    font-family:Cambria, Cochin, Georgia,  Times, 'Times New Roman', serif;
+    font-size: 90%;
+            
+}
+.smenadekor{   /* Действия на сцене более мелким шрифтом */
+    font-size: 75%;
+
+}
+
+body{
+
+    background-color: #f5f5f5;
+    color: #2a2541;
+}
+
+/*  Для уменьшения отступов между строк Хотелось бы сделать этим более простым способом, 
+    указав свойство для всех тегов <p>, но на момент 
+    появления задания мы о такой возможности не знали. В общем еспользую тег <br>, 
+
+p{
+    margin: 0;
+}
+
+*/

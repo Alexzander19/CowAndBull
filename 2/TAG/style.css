@@ -1,0 +1,37 @@
+.example{
+    color: gray;
+}
+.important{
+    font-weight: bold;
+}
+
+.italic{ /* определение терминов КУРСИВ */
+    font-style: italic;
+
+}
+
+div.definition{
+    width: max-content; /* Ширина относительно содержимого*/
+    height: min-content; /* Высота относительно содержимого, но работало без него*/
+    margin: 2em; /* расстояние от соседних элементов (рамок)*/
+    padding: 2em; /* расстояние от внутреннгео содержимого до края тега*/
+    background-color: rgb(243, 235, 235);
+
+}
+
+div.definition dl dd ol li ul{
+    list-style-type: none; /* убираем маркер*/
+    padding-left: 0;       /* убираем отступ слева*/
+
+
+}
+
+div.definition a{  /* убираем подчеркивание ссылок*/
+    text-decoration: none;
+}
+
+a:visited{  /* Если версия браузера меняет цвет посещенных ссылок - делаем синими на всей страничке*/
+
+    color: blue; 
+}
+

@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.field {
+    display: flex;
+    flex-wrap: wrap;
+    width: 550px;
+    height: 219.5px;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.field > div {
+    width: 70px;
+    height: 66.5px;
+    display: flex;
+
+}
+
+.field > div  img {
+    width: 95%;
+}
+
+.player {
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+
+}
+
+#next {
+    border: none;
+    padding: 10px 20px;
+}
