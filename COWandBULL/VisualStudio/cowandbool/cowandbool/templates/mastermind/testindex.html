@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<table  id="myTable">
+    <caption>
+      ИГРА в КОРОВ-БЫКОВ (4 цифры от 0 до 9)
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">ВЫ НАЗВАЛИ ЧИСЛО</th>
+        <th scope="col">ЗДЕСЬ КОРОВ / БЫКОВ</th>
+        <th scope="col">ШАГ</th>
+      </tr>
+    </thead>
+    <tbody>
+ 
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="row" colspan="2">  <input id = 'userInput' > <span id = 'timetext'> прошло времени: </span></input>  </th> <!-- type="number"  -->
+        <td id = 'time'></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <p>
+    <button  onclick="cowBullUserTry();return false;">ПРОВЕРИТЬ</button>
+    
+    
+</p>
+
+<script src="{% static 'js/function.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/events.js' %}"></script>
+
+{% endblock %}
+

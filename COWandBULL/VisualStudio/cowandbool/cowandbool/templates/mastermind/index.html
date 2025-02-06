@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row game-wrapper ">
+  <div class="col col-md-5 col-lg-4 order-md-1 order-2 ">
+  <div class=" col-user-size  user-game-wrapper">
+    <!-- Колонка 1 -->
+    
+    <div class="global-wrapper-user">
+        <h3 class="mb-5"> Рейтинг Пользователей</h3>
+
+        {% for user in users %}
+        <div class="card" style="width: 18rem;" >
+            <img src={{user.avatar_pic.url}} class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><a href = "#">{{user}} </a></h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+  
+        {% endfor %}
+    </div>
+     
+    </div>
+
+
+  </div>
+    <div class="col  order-md-2 order-1"> 
+    <div class="col-game-size table-game-wrapper ">
+      <!-- Колонка 2 -->
+      
+        <table  id="myTable">
+          <caption>
+            ИГРА в КОРОВ-БЫКОВ (4 цифры от 0 до 9)
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">ВЫ НАЗВАЛИ ЧИСЛО</th>
+              <th scope="col">ЗДЕСЬ КОРОВ / БЫКОВ</th>
+              <th scope="col">ШАГ</th>
+            </tr>
+          </thead>
+          <tbody>
+       
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row" colspan="2">  <input id = 'userInput' > <span id = 'timetext'> прошло времени: </span></input>  </th> <!-- type="number"  -->
+              <td id = 'time'></td>
+            </tr>
+            <th>
+              <button  onclick="cowBullUserTry();return false;">ПРОВЕРИТЬ</button>
+            </th>
+          </tfoot>
+          <p>
+            
+          </p>
+        </table>
+      
+      </div>
+        
+          
+        
+        
+
+    </div>
+</div>
+
+
+<script src="{% static 'js/function.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/events.js' %}"></script>
+     
+
+     
+{% endblock %}

@@ -1,0 +1,108 @@
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .game-wrapper {
+    column-gap: 1em; /* Позволим элементам дышать */
+    column-rule: 1px solid #ccc; /* Сделаем границы заметными */
+  }
+
+  .user-game-wrapper {
+    background-color: #8bf805;
+    display: flex;
+    flex-direction: column;
+    
+    /* justify-content: center; */
+    overflow-y: auto;
+   
+    
+  }
+  .table-game-wrapper {
+    display:flex;
+    justify-content: center;
+  }
+  
+  caption {
+     /* caption-side: bottom; */
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  thead,
+  tfoot {
+    background-color: rgb(228 240 245);
+  }
+  
+  th,
+  td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+  }
+  
+  td:last-of-type {
+    text-align: center;
+  }
+  
+  tbody > tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+  }
+  
+  tfoot th {
+    text-align: left;
+  }
+  
+  tfoot td {
+    font-weight: bold;
+  }
+
+  
+  #timetext {
+    float: right;
+
+  }
+
+  .main-color {
+
+      background: rgb(207, 217, 229);
+
+  }
+
+ 
+
+  .col-user-size {
+
+    max-width: min-content ;
+    height: 70vh;
+    
+    
+ 
+  }
+
+  /* .scrollable-div { height: 200px; // Высота может быть любой, это на ваш выбор overflow-y: auto; } */
+
+  @media (min-width: 700px) {
+  .col-user-size {
+      width: 100vh;
+      overflow-y: unset;
+      max-width: min-content;
+      height: 70vh;
+    
+    }
+  } 
+
+  .global-wrapper-user {
+
+    height:  70vh;
+    overflow-y: auto;
+    justify-content: center;
+
+  }
+
+  
+
+
+  
