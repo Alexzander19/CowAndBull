@@ -18,7 +18,7 @@ def test_deepseek(request):
 
     return render(request,'mastermind/DeepSeek2.html')
 
-def bikini(request):
+def fireworks(request):
 
-    return render(request,'mastermind/deepSeekBikini.html')
+    return render(request,'mastermind/deepSeekFireworks.html')
 
