@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игровая платформа</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: transparent;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .container-fluid {
+            padding: 20px;
+            height: calc(100vh - 76px);
+        }
+        
+        .chat-column {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .game-table {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+        
+        .game-cell {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #333;
+            margin: 5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: #fff;
+            transition: all 0.3s;
+        }
+        
+        .game-cell:hover {
+            background: #f0f0f0;
+        }
+        
+        @media (max-width: 768px) {
+            .chat-column, .game-table {
+                margin-bottom: 20px;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header с Bootstrap меню -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Игровая платформа</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Профиль</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Настройки</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Основной контент -->
+<div class="container-fluid">
+    <div class="row g-4">
+        <!-- Колонка чата -->
+        <div class="col-12 col-md-4">
+            <div class="chat-column">
+                <h4>Чат игроков</h4>
+                <div class="chat-messages">
+                    <!-- Пример сообщений -->
+                    <div class="message">Игрок1: Привет!</div>
+                    <div class="message">Игрок2: Как дела?</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Колонка игры -->
+        <div class="col-12 col-md-8">
+            <div class="game-table">
+                <h4>Игровое поле</h4>
+                <div class="game-grid">
+                    <!-- Пример игровых ячеек -->
+                    <div class="game-cell">1</div>
+                    <div class="game-cell">2</div>
+                    <div class="game-cell">3</div>
+                    <!-- Добавьте больше ячеек по необходимости -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

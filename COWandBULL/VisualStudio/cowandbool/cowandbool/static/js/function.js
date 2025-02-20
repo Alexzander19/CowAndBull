@@ -131,8 +131,13 @@ function cowBullUserTry(){
     cowBull = countCowBull(userNUM.value,computerNUM)
     
     step +=1;
+   
     addRow('myTable',userNUM.value, cowBull);
     
+    let inputText = document.getElementById('userInput')
+    console.log(inputText.value)
+    inputText.value = ''
+
     }
 
 
@@ -219,8 +224,8 @@ function inputcontrolBefor()
     }
 
 
-userInput.value = resStr.slice(0,computerNUM.length); // допускается длинна отличная от 4
-tempInput = userInput.value // ПЕРЕД АНАЛИЗОМ ВВЕДЕННОЙ КЛАВИШИ (КСТАТИ БУДЕМ АНАЛИЗИРОВАТЬ НЕ КЛАВИШУ, А ВСЮ СТРОКУ)
+    userInput.value = resStr.slice(0,computerNUM.length); // допускается длинна отличная от 4
+    tempInput = userInput.value // ПЕРЕД АНАЛИЗОМ ВВЕДЕННОЙ КЛАВИШИ (КСТАТИ БУДЕМ АНАЛИЗИРОВАТЬ НЕ КЛАВИШУ, А ВСЮ СТРОКУ)
                             // СОХРАНЯЕМ ПРЕДУДУЩЕЕ (ДО ВВОДА) ЗНАЧЕНИЕ. ПРОВЕРИВ ЕГО НА ОШИБКИ
    
 }

@@ -13,3 +13,12 @@ def test_show(request):
 
     users=User.objects.all()
     return render(request,'mastermind/testcol.html',{'users': users})
+
+def test_deepseek(request):
+
+    return render(request,'mastermind/DeepSeek2.html')
+
+def bikini(request):
+
+    return render(request,'mastermind/deepSeekBikini.html')
+

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fireworks Control</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+        }
+        #controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        #fireworks-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #fireworks-button.start {
+            background-color: #4CAF50;
+        }
+        #fireworks-button.stop {
+            background-color: #f44336;
+        }
+        #sound-button {
+            background-color: #2196F3;
+            color: white;
+        }
+        #sound-button.on {
+            background-color: #4CAF50;
+        }
+        #sound-button.off {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="controls">
+        <button id="fireworks-button">Start Fireworks</button>
+        <button id="sound-button">Sound: On</button>
+    </div>
+
+    <!-- Подключение библиотеки Fireworks.js -->
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@latest/dist/index.umd.js"></script>
+    <script>
+        // Инициализация фейерверка
+        const container = document.body;
+        const fireworks = new Fireworks.default(container, {
+            speed: 2,
+            acceleration: 1.05,
+            friction: 0.98,
+            gravity: 1.5,
+            particles: 50,
+            explosion: 5,
+            boundaries: {
+                x: 0,
+                y: 0,
+                width: window.innerWidth,
+                height: window.innerHeight
+            },
+            sound: {
+                enable: false,
+                files: [
+                    'https://www.zapsplat.com/wp-content/uploads/2020/sounds1/surround-sound-effects-ambience-ambiance-47188.mp3'
+                ]
+            },
+            mouse: {
+                click: false,
+                move: false,
+                max: 1
+            }
+        });
+
+        // Кнопка для управления фейерверком
+        const fireworksButton = document.getElementById('fireworks-button');
+        let fireworksActive = false;
+
+        // Кнопка для управления звуком
+        const soundButton = document.getElementById('sound-button');
+        let soundEnabled = false;
+
+        // Функция для запуска/остановки фейерверка
+        function toggleFireworks() {
+            if (!fireworksActive) {
+                fireworks.start();
+                fireworksButton.textContent = 'Stop Fireworks';
+                fireworksButton.classList.remove('start');
+                fireworksButton.classList.add('stop');
+                fireworksActive = true;
+            } else {
+                fireworks.stop();
+                fireworksButton.textContent = 'Start Fireworks';
+                fireworksButton.classList.remove('stop');
+                fireworksButton.classList.add('start');
+                fireworksActive = false;
+            }
+        }
+
+        // Функция для включения/выключения звука
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            fireworks.updateSetting('sound', { enable: soundEnabled });
+            if (soundEnabled) {
+                soundButton.textContent = 'Sound: On';
+                soundButton.classList.remove('off');
+                soundButton.classList.add('on');
+            } else {
+                soundButton.textContent = 'Sound: Off';
+                soundButton.classList.remove('on');
+                soundButton.classList.add('off');
+            }
+        }
+
+        // Привязка функций к кнопкам
+        fireworksButton.addEventListener('click', toggleFireworks);
+        soundButton.addEventListener('click', toggleSound);
+
+        // Изначальное состояние звука
+        soundButton.textContent = 'Sound: On';
+    </script>
+
+</body>
+</html>

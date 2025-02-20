@@ -1,3 +1,164 @@
+body {
+  background: transparent;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Узкий навбар */
+.navbar {
+  min-height: 56px; /* Стандартная высота навбара Bootstrap */
+  padding: 4px 0;
+}
+.navbar-brand {
+  padding: 8px 16px;
+}
+
+.container-fluid {
+  flex: 1;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Колонка с игрой */
+.game-column {
+  height: calc(100vh - 76px); /* 76px = высота навбара + padding контейнера */
+  display: flex;
+  flex-direction: column;
+}
+
+.game-table {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Чат */
+.chat-column {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  height: calc(100vh - 160px); /* Высота с учетом навбара и отступов */
+  overflow-y: auto;
+}
+
+/* Адаптивная верстка */
+@media (max-width: 768px) {
+  .game-column {
+      height: auto;
+      order: -1; /* Колонка с игрой будет выше чата на мобильных */
+      margin-bottom: 20px;
+  }
+  
+  .chat-column {
+      height: 300px; /* Фиксированная высота чата на мобильных */
+  }
+}
+
+/* Остальные стили остаются без изменений */
+.game-cell {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #333;
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.3s;
+}
+
+.message {
+  padding: 8px 12px;
+  margin: 5px 0;
+  background: #f8f9fa;
+  border-radius: 15px;
+  border: 1px solid #eee;
+}
+
+
+#myTable {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+thead,
+  tfoot {
+    background-color: rgb(228 240 245);
+  }
+  
+  th,
+  td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+  }
+  
+  td:last-of-type {
+    text-align: center;
+  }
+  
+  tbody > tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+  }
+  
+  tfoot th {
+    text-align: left;
+  }
+  
+  tfoot td {
+    font-weight: bold;
+  }
+
+  
+  #timetext {
+    float: right;
+
+  }
+
+  .main-color {
+
+      background: rgb(207, 217, 229);
+
+  }
+
+ 
+
+  .col-user-size {
+
+    max-width: min-content ;
+    height: 70vh;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+
+
 table {
     border-collapse: collapse;
     border: 2px solid rgb(140 140 140);
@@ -8,8 +169,8 @@ table {
 
   .game-wrapper {
     column-gap: 1em; /* Позволим элементам дышать */
-    column-rule: 1px solid #ccc; /* Сделаем границы заметными */
-  }
+    /* column-rule: 1px solid #ccc; /* Сделаем границы заметными */
+  /* }
 
   .user-game-wrapper {
     background-color: #8bf805;
@@ -17,18 +178,18 @@ table {
     flex-direction: column;
     
     /* justify-content: center; */
-    overflow-y: auto;
+    /* overflow-y: auto; */
    
-    
+/*     
   }
   .table-game-wrapper {
     display:flex;
     justify-content: center;
   }
   
-  caption {
-     /* caption-side: bottom; */
-    padding: 10px;
+  caption { */
+     /* caption-side: bottom; */ 
+    /* padding: 10px;
     font-weight: bold;
   }
   
@@ -80,9 +241,9 @@ table {
     
     
  
-  }
+  } */
 
-  /* .scrollable-div { height: 200px; // Высота может быть любой, это на ваш выбор overflow-y: auto; } */
+  /* .scrollable-div { height: 200px; // Высота может быть любой, это на ваш выбор overflow-y: auto; }
 
   @media (min-width: 700px) {
   .col-user-size {
@@ -105,4 +266,4 @@ table {
   
 
 
-  
+   */ 

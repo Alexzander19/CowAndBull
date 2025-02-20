@@ -1,0 +1,80 @@
+
+{% extends 'base.html' %}
+{% load static %}
+    
+{% block content %}
+
+<!-- Основной контент -->
+<div class="container-fluid">
+    <div class="row g-4">
+        <!-- Колонка игры -->
+        <div class="col-12 col-md-8 game-column">
+            
+            <div class="game-table">
+                <button type="button" class="btn btn-primary" onclick="startGame();return false" > Начать новую игру</button>
+                <table  id="myTable">
+                    <!-- <caption>
+                      ИГРА в КОРОВ-БЫКОВ (4 цифры от 0 до 9)
+                    </caption> -->
+                    <thead>
+                        
+                      
+                      <tr>
+                        <th scope="col">ВЫ НАЗВАЛИ ЧИСЛО</th>
+                        <th scope="col">ЗДЕСЬ КОРОВ / БЫКОВ</th>
+                        <th scope="col">ШАГ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                 
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th scope="row" colspan="2">  <input id = 'userInput' > <span id = 'timetext'> прошло времени: </span></input>  </th> <!-- type="number"  -->
+                        <td id = 'time'></td>
+                      </tr>
+                      
+                    </tfoot>
+                    <p>
+                      
+                    </p>
+                </table>
+                <button type="button" class="btn btn-primary" onclick="cowBullUserTry();return false;">ПРОВЕРИТЬ</button>
+
+                
+            </div>
+        </div>
+
+        <!-- Колонка чата -->
+        <div class="col-12 col-md-4">
+            <div class="chat-column">
+                <h4>Чат игроков</h4>
+                <div class="chat-messages">
+                    <!-- Пример сообщений -->
+                   
+                    {% for i in "x"|ljust:"20" %}
+                        <div class="message">Игрок{{ forloop.counter }}: Сообщение {{ forloop.counter }}</div>
+                    {% endfor %}
+
+
+                </div>
+                <form id="chatForm">
+                    <div class="input-group mt-3">
+                        <input type="text" class="form-control" placeholder="Ваше сообщение">
+                        <button class="btn btn-primary" type="submit">Отправить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<script src="{% static 'js/function.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/events.js' %}"></script>
+
+{% endblock %}

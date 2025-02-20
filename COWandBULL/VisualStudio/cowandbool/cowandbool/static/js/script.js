@@ -6,13 +6,7 @@
 
 
 // цифры в звгаданном числе не должны повторяться
-
-let computerNUM = generateWithBut( [-1,-10,-3,-10],[]) // четырех значное число, с нулями
-
-console.log('Сгенерированное число: '+ computerNUM)
-
-let userMindNUM = '5678' // Это число должна найти программа
-
+let computerNUM = [-1,-10,-3,-10]
 let timeStart = performance.now();
 
 let step = 0;
@@ -22,6 +16,32 @@ let cowBull = [];
 let bullInUserNUM = 0;
 let cowInUserNUM = 0;
 
+function startGame() {
+
+    
+    // Очищаем таблицу точнее раздел tbody           
+    let tbody = document.getElementById("myTable").getElementsByTagName("tbody")[0]
+    tbody.innerHTML = ''; 
+    
+    // Обнуляем все глобальные переменные
+
+    timeStart = performance.now();
+
+    step = 0;
+    cow = 0; // корова, если такая цифра есть, но стоит не на месте
+    bull = 0; // бык, если цифра стоит на своем месте
+    cowBull = [];
+    bullInUserNUM = 0;
+    cowInUserNUM = 0;
+    
+    computerNUM = generateWithBut( [-1,-10,-3,-10],[]) // четырех значное число, с нулями
+
+    console.log('Сгенерированное число: '+ computerNUM)
+
+    
+}
+
+startGame()
 /*
 Двухмерный Массив результата поиска значений
 
@@ -35,18 +55,16 @@ let cowInUserNUM = 0;
 
 */ 
 
+// let massToFind = [];
 
+// for(let i = 0; i < userMindNUM.length ; i ++){
+//     massToFind[i] = [];
+//     for(let j = 0; j < 10 ; j ++)
+//         massToFind[i].push(0) // пока что про все цифры не знаем
 
-let massToFind = [];
-
-for(let i = 0; i < userMindNUM.length ; i ++){
-    massToFind[i] = [];
-    for(let j = 0; j < 10 ; j ++)
-        massToFind[i].push(0) // пока что про все цифры не знаем
-
-}
+// }
         
-console.log(massToFind)
+// console.log(massToFind)
 
 /*
 while(bull != userMindNUM.length){
