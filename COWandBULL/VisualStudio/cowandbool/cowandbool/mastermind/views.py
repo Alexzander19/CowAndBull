@@ -16,7 +16,8 @@ def test_show(request):
 
 def test_deepseek(request):
 
-    return render(request,'mastermind/DeepSeek2.html')
+    users=User.objects.all()
+    return render(request,'mastermind/DeepSeek2.html',{'users': users})
 
 def fireworks(request):
 

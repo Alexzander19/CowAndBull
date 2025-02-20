@@ -33,4 +33,13 @@ class Rating(models.Model):
 
   def __str__(self):
     return str(self.number_of_points)
+  
+
+class Message(models.Model):
+  message = models.CharField(max_length=250)
+  from_user = models.ForeignKey(User, related_name='from_user', on_delete=models.CASCADE)
+  to_user = models.ForeignKey(User, related_name='to_user', on_delete=models.CASCADE,null=True)
+
+  def __str__(self):
+    return self.message
 
