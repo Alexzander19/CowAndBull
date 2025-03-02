@@ -23,3 +23,7 @@ def fireworks(request):
 
     return render(request,'mastermind/deepSeekFireworks.html')
 
+def select(request):
+
+    return render(request,'mastermind/select3to6.html')
+

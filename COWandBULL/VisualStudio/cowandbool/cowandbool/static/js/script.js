@@ -6,7 +6,24 @@
 
 
 // цифры в звгаданном числе не должны повторяться
-let computerNUM = [-1,-10,-3,-10]
+
+
+//  number - это количество цифр в загаданном компьютере числе
+// определяется в сплывающем окне при нажатии кнопки "начать новую игру"
+const number = getQueryParam('number');
+console.log(number)
+
+
+
+// let computerNUM = [-1,-10,-3,-10]
+
+let computerNUM = [];
+    
+    for (let i = 0; i <= number; i++) {
+        computerNUM.push(-10);
+    }
+    
+
 let timeStart = performance.now();
 
 let step = 0;
@@ -34,100 +51,30 @@ function startGame() {
     bullInUserNUM = 0;
     cowInUserNUM = 0;
     
-    computerNUM = generateWithBut( [-1,-10,-3,-10],[]) // четырех значное число, с нулями
+    computerNUM = [];
+    // Длина computerNUM такая, как выбрал пользватель при нажатии клавиши начать новую игру
+    // с указанием длины числа (number)
+
+    for (let i = 0; i < number; i++) {
+        computerNUM.push(-10);
+    }
+
+    // computerNUM - это массив чисел -10 (можно любые отрицательные), функция generateWithBut
+    // сгенерирует стоолько случайных чисел от 0 до 9 (если не заданы исключения), 
+    // сколько чисел в массиве computerNUM, то есть равной его длине.
+    computerNUM = generateWithBut( computerNUM,[]) // четырех значное число, с нулями
 
     console.log('Сгенерированное число: '+ computerNUM)
+
+    let inputSize = document.getElementById("userInput")
+
+        // Имя класса, который отвечает за длинну поля ввода в зависимости от number - количества цифр
+    inputSize.className += " user-input-naum-width-" + number
+
+    console.log("Имя класса: " + inputSize.className)
+    
 
     
 }
 
 startGame()
-/*
-Двухмерный Массив результата поиска значений
-
-для каждой цифры загаданного числа - есть массив всех чисел от 0 до 9
-Индекс массива - это и есть число, которое нас интересует, а вот его значение:
-     0  не знаем та цифра или нет
-    -1  этой цифры здесь точно нет
-     1 эта цифра на своем месте
-     2 эта цифра пробовалась (называлась)  
-
-
-*/ 
-
-// let massToFind = [];
-
-// for(let i = 0; i < userMindNUM.length ; i ++){
-//     massToFind[i] = [];
-//     for(let j = 0; j < 10 ; j ++)
-//         massToFind[i].push(0) // пока что про все цифры не знаем
-
-// }
-        
-// console.log(massToFind)
-
-/*
-while(bull != userMindNUM.length){
-
-    // генерируем число нужной длинны
-    // с указанием диапазона чисел
-
-    bull ++; // просто чтобы выйти из цикла пока что
-
-
-
-}
-
-
-
-*/
-
-
-
-
-// Проверка на совпадения когда пользователь отгадывает число компьютера. ************************************************************
-
-
-//while(bull != userMindNUM.length){
-  
- //   let userNUM = document.getElementById('userInput')
-  //  console.log(userMindNUM)
-// // 
-//     if(userNUM == 'Q' || userNUM == 'q')
-//         break;
-
-//     step ++;
-
-
-   // cowBull = countCowBull(computerNUM,userNUM)
-
-   // console.log(' '+userNUM+' Коров: ' + cowBull[0] + ' Быков: '+ cowBull[1] + ', Шаг: ' + step)
-
-//} 
-
-
-
-
-
-//******************************************************************************************
-
-/*
-
-let arr100 = ['x','x','x','x']
-
-let arrMayBe = [0,1,2,3,4,5,6,7,8,9]
-
-//let arrNotThis = ['x','x','x','x','x','x']
-
-if(cow == 0 && bull == 0)
-    for(let i =0; i < userNUM.length; i++)
-        {
-            
-        }
-
-*/
-
-
-
-
-

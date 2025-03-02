@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор числа</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Дополнительные стили */
+        .number-selector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .number-display {
+            font-size: 2rem;
+            margin: 10px 0;
+        }
+        .button-group {
+            display: flex;
+            gap: 20px;
+        }
+        .arrow-button {
+            font-size: 2rem;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Выберите число</h1>
+    <button type="button" class="btn btn-primary" id="openModalButton">Выбрать число</button>
+</div>
+
+<!-- Модальное окно -->
+<div class="modal fade" id="numberModal" tabindex="-1" aria-labelledby="numberModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="numberModalLabel">Выберите число от 3 до 6</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <div class="number-selector">
+            <div class="arrow-button" id="increaseButton">▲</div>
+            <div class="number-display" id="numberDisplay">3</div>
+            <div class="arrow-button" id="decreaseButton">▼</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-primary" id="confirmButton">Подтвердить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modalElement = document.getElementById('numberModal');
+        const modal = new bootstrap.Modal(modalElement);
+        const openModalButton = document.getElementById('openModalButton');
+        const decreaseButton = document.getElementById('decreaseButton');
+        const increaseButton = document.getElementById('increaseButton');
+        const numberDisplay = document.getElementById('numberDisplay');
+        const confirmButton = document.getElementById('confirmButton');
+
+        let currentNumber = 4;
+
+        function updateNumberDisplay() {
+            numberDisplay.textContent = currentNumber;
+        }
+
+        openModalButton.addEventListener('click', function() {
+            currentNumber = 4; // Сбрасываем число при открытии
+            updateNumberDisplay();
+            modal.show();
+        });
+
+        decreaseButton.addEventListener('click', function() {
+            if (currentNumber > 3) {
+                currentNumber--;
+                updateNumberDisplay();
+            }
+        });
+
+        increaseButton.addEventListener('click', function() {
+            if (currentNumber < 6) {
+                currentNumber++;
+                updateNumberDisplay();
+            }
+        });
+
+        confirmButton.addEventListener('click', function() {
+            // alert('Вы выбрали число: ' + currentNumber);
+            // modal.hide();
+            // Перенаправляем на целевую страницу с параметром
+            window.location.href = `/deep?number=${currentNumber}`;
+        });
+    });
+</script>
+</body>
+</html>

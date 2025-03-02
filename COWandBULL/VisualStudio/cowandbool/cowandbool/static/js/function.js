@@ -149,25 +149,34 @@ function addRow(id,userNUM, cowBull){
     let tbody = document.getElementById(id).getElementsByTagName("tbody")[0];
     let row = document.createElement("tr")
     
+    
+    
     let td1 = document.createElement("td")
-    td1.appendChild(document.createTextNode(userNUM))
+    let pre1 = document.createElement("pre")
+    pre1.className = "pre-in-table"
+    pre1.appendChild(document.createTextNode(userNUM + ' ' + cowBull[0] + ' ко ' + cowBull[1] + ' бы ' + ' ' + step))
+
+    td1.appendChild(pre1)
     
-    let td2 = document.createElement("td")
-    td2.appendChild (document.createTextNode(cowBull[0] + ' коров ' + cowBull[1] + ' быков '))
+    // let td1 = document.createElement("td")
+    // td1.appendChild(document.createTextNode(userNUM))
     
-    let td3 = document.createElement('td')
-    td3.appendChild(document.createTextNode(step))
+    // let td2 = document.createElement("td")
+    // td2.appendChild (document.createTextNode(cowBull[0] + ' коров ' + cowBull[1] + ' быков '))
+    
+    // let td3 = document.createElement('td')
+    // td3.appendChild(document.createTextNode(step))
    
     row.appendChild(td1);
-    row.appendChild(td2);
-    row.appendChild(td3);
+    // row.appendChild(td2);
+    // row.appendChild(td3);
     tbody.appendChild(row);
 
 
     let timeSpend = document.getElementById('time')
 
     //console.log(timeStart)
-    timeSpend.innerHTML = Math.floor(((performance.now() - timeStart) / 1000 / 60 )) + ' мин. ' + Math.round((((performance.now() - timeStart) / 1000) % 60)) + ' cек.';
+    timeSpend.innerHTML = Math.floor(((performance.now() - timeStart) / 1000 / 60 )) + ' м. ' + Math.round((((performance.now() - timeStart) / 1000) % 60)) + ' c.';
 
     
 }
