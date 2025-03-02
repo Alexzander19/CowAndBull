@@ -149,13 +149,33 @@ function addRow(id,userNUM, cowBull){
     let tbody = document.getElementById(id).getElementsByTagName("tbody")[0];
     let row = document.createElement("tr")
     
+
+    // Создаем элемент <img> для замены "коровы"
+    let cowImage = document.createElement("img");
+    cowImage.src = '/static/img/cow.png'; 
+    cowImage.alt = "К";
+    cowImage.style.width = "20px"; 
+    cowImage.style.height = "20px";
     
-    
+    // Создаем элемент <img> для замены "бы" (если нужно)
+    let bullImage = document.createElement("img");
+    bullImage.src = '/static/img/bull.png'; 
+    bullImage.alt = "Б";
+    bullImage.style.width = "20px"; 
+    bullImage.style.height = "20px";
+
+
     let td1 = document.createElement("td")
     let pre1 = document.createElement("pre")
     pre1.className = "pre-in-table"
-    pre1.appendChild(document.createTextNode(userNUM + ' ' + cowBull[0] + ' ко ' + cowBull[1] + ' бы ' + ' ' + step))
-
+    // pre1.appendChild(document.createTextNode(userNUM + ' ' + cowBull[0] + ' ко ' + cowBull[1] + ' бы ' + ' ' + step))
+    pre1.appendChild(document.createTextNode(userNUM + ' ' + cowBull[0] + ' '));
+    pre1.appendChild(cowImage);
+    pre1.appendChild(document.createTextNode(' ' + cowBull[1] + ' '));
+    pre1.appendChild(bullImage);
+    pre1.appendChild(document.createTextNode(' |' + step))
+    
+    
     td1.appendChild(pre1)
     
     // let td1 = document.createElement("td")
