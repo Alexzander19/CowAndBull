@@ -22,6 +22,45 @@ for(let i = 0; i < NUM1.length; i++ ){
     }
     
 }
+// Если количество быков = количеству цифр в загаданном числе,
+// то есть отгадано число
+if(NUM1.length == bull){
+
+    console.log('ВЫ ОТГАДАЛИ ЧИСЛО. ЗАПУСКАЕМ ФЕЙЕРВЕРК!!!');
+
+    // Создаем контейнер
+    const container = document.createElement('div');
+    container.id = 'fireworks-container';
+    document.body.appendChild(container);
+        
+
+    const fireworks = new Fireworks.default(container, {
+        speed: 2,
+        acceleration: 1.05,
+        friction: 0.98,
+        gravity: 1.5,
+        particles: 50,
+        explosion: 5,
+        boundaries: {
+            x: 0,
+            y: 0,
+            width: window.innerWidth,
+            height: window.innerHeight
+        },
+        
+        mouse: {
+            click: false,
+            move: false,
+            max: 1
+        }
+    });
+   
+
+    fireworks.start();
+
+    container.style.display = 'block'; // показать контейнер
+}
+    
 
 return [cow,bull]
 }
@@ -177,6 +216,7 @@ function addRow(id,userNUM, cowBull){
     
     
     td1.appendChild(pre1)
+    
     
     // let td1 = document.createElement("td")
     // td1.appendChild(document.createTextNode(userNUM))

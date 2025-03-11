@@ -6,7 +6,7 @@ function getQueryParam(param) {
 
 // Функция для отображения числа
 function displayNumber() {
-    const number = getQueryParam('number');
+    const number = getQueryParam('count_numbers');
     const displayElement = document.getElementById('selectedNumber');
 
     if (number !== null) {
@@ -67,6 +67,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // alert('Вы выбрали число: ' + currentNumber);
         // modal.hide();
         // Перенаправляем на целевую страницу с параметром
-        window.location.href = `/deep?number=${currentNumber}`;
+        window.location.href = `/deep?count_numbers=${currentNumber}`;
     });
 });
+
+
+
+ // Инициализация фейерверка
+ 
+
+

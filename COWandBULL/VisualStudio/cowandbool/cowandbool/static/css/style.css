@@ -5,7 +5,11 @@ body {
   display: flex;
   flex-direction: column;
   color: #fff;
-}
+} 
+
+
+  
+
 
 
 
@@ -43,6 +47,13 @@ body {
   overflow-y: auto;
 }
 
+
+.button-and-time{
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
 /* Чат */
 .chat-column {
   /* background: rgba(255, 255, 255, 0.9); */
@@ -67,7 +78,7 @@ body {
   }
 }
 
-/* Остальные стили остаются без изменений */
+/* -------------------------------------------------------- */
 .game-cell {
   width: 60px;
   height: 60px;
@@ -142,7 +153,7 @@ thead,
 
   .main-color {
 
-      /* background: rgb(207, 217, 229); */
+     
       background: rgb(0, 0, 0);
 
   }
@@ -234,127 +245,60 @@ thead,
 }
 
 
+#fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* позволяет кликать сквозь контейнер */
+  z-index: 9999; /* гарантирует, что будет поверх всех элементов */
+  background: none; /* прозрачный фон */
+
+  mix-blend-mode: screen; /* лучшее смешивание с фоном */
+}
 
 
+.table-game {
+  font-family: var(--bs-font-monospace);
+}
+
+.table-game .table-row:nth-child(2n) {
+  background-color: inherit;
+}
+
+.table-game .table-row:last-child .table-col:nth-child(2) {
+  width: 25%;
+}
+
+.table-game .table-row {
+  display: flex;
+  background-color: #182c4d;
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+.table-game .table-row .table-col {
+  width: 33.33%;
+  text-align: center;
+}
+
+.table-game .table-input {
+  /* height: 100%; */
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  border-style: none;
+  text-align: center;
+  /* width: 60px; */
+  /* margin-left: 7px;
+  padding-left: 7px; */
+  /* box-sizing: border-box; */
+}
+
+.table-game .table-col.align-left {
+  text-align: left;
+}
 
 
-
-
-
-
-
-
-
-
-/* 
-
-
-
-table {
-    border-collapse: collapse;
-    border: 2px solid rgb(140 140 140);
-    font-family: sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-  }
-
-  .game-wrapper {
-    column-gap: 1em; /* Позволим элементам дышать */
-    /* column-rule: 1px solid #ccc; /* Сделаем границы заметными */
-  /* }
-
-  .user-game-wrapper {
-    background-color: #8bf805;
-    display: flex;
-    flex-direction: column;
-    
-    /* justify-content: center; */
-    /* overflow-y: auto; */
-   
-/*     
-  }
-  .table-game-wrapper {
-    display:flex;
-    justify-content: center;
-  }
-  
-  caption { */
-     /* caption-side: bottom; */ 
-    /* padding: 10px;
-    font-weight: bold;
-  }
-  
-  thead,
-  tfoot {
-    background-color: rgb(228 240 245);
-  }
-  
-  th,
-  td {
-    border: 1px solid rgb(160 160 160);
-    padding: 8px 10px;
-  }
-  
-  td:last-of-type {
-    text-align: center;
-  }
-  
-  tbody > tr:nth-of-type(even) {
-    background-color: rgb(237 238 242);
-  }
-  
-  tfoot th {
-    text-align: left;
-  }
-  
-  tfoot td {
-    font-weight: bold;
-  }
-
-  
-  #timetext {
-    float: right;
-
-  }
-
-  .main-color {
-
-      background: rgb(207, 217, 229);
-
-  }
-
- 
-
-  .col-user-size {
-
-    max-width: min-content ;
-    height: 70vh;
-    
-    
- 
-  } */
-
-  /* .scrollable-div { height: 200px; // Высота может быть любой, это на ваш выбор overflow-y: auto; }
-
-  @media (min-width: 700px) {
-  .col-user-size {
-      width: 100vh;
-      overflow-y: unset;
-      max-width: min-content;
-      height: 70vh;
-    
-    }
-  } 
-
-  .global-wrapper-user {
-
-    height:  70vh;
-    overflow-y: auto;
-    justify-content: center;
-
-  }
-
-  
-
-
-   */ 

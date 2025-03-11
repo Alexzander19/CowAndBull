@@ -2,24 +2,21 @@
 
 
 // Игра в Коров и Быков
-// Хочу написать, но пока не могу придумать алгоритм поиска загаданного числа
-
 
 // цифры в звгаданном числе не должны повторяться
 
 
 //  number - это количество цифр в загаданном компьютере числе
 // определяется в сплывающем окне при нажатии кнопки "начать новую игру"
-const number = getQueryParam('number');
-console.log(number)
+const count_numbers = getQueryParam('count_numbers');
 
 
 
 // let computerNUM = [-1,-10,-3,-10]
 
-let computerNUM = [];
+let computerNUM = []; // число, которое нужно найти, создается компьютером случайным(псевдо) образом
     
-    for (let i = 0; i <= number; i++) {
+    for (let i = 0; i <= count_numbers; i++) {
         computerNUM.push(-10);
     }
     
@@ -32,6 +29,8 @@ let bull = 0; // бык, если цифра стоит на своем мест
 let cowBull = [];
 let bullInUserNUM = 0;
 let cowInUserNUM = 0;
+// Фейерверк
+let fireworksActive = false;
 
 function startGame() {
 
@@ -55,25 +54,22 @@ function startGame() {
     // Длина computerNUM такая, как выбрал пользватель при нажатии клавиши начать новую игру
     // с указанием длины числа (number)
 
-    for (let i = 0; i < number; i++) {
+    for (let i = 0; i < count_numbers; i++) {
         computerNUM.push(-10);
     }
 
     // computerNUM - это массив чисел -10 (можно любые отрицательные), функция generateWithBut
-    // сгенерирует стоолько случайных чисел от 0 до 9 (если не заданы исключения), 
+    // сгенерирует стоолько цифр от 0 до 9 в  чиселе  (если не заданы исключения - массив But), 
     // сколько чисел в массиве computerNUM, то есть равной его длине.
-    computerNUM = generateWithBut( computerNUM,[]) // четырех значное число, с нулями
+    computerNUM = generateWithBut( computerNUM,[]) 
 
     console.log('Сгенерированное число: '+ computerNUM)
 
     let inputSize = document.getElementById("userInput")
 
+        // Задаем длину поля ввода числа пользователем.
         // Имя класса, который отвечает за длинну поля ввода в зависимости от number - количества цифр
-    inputSize.className += " user-input-naum-width-" + number
-
-    console.log("Имя класса: " + inputSize.className)
-    
-
+    inputSize.className += " user-input-naum-width-" + count_numbers
     
 }
 
