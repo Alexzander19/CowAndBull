@@ -183,39 +183,86 @@ function cowBullUserTry(){
 
 function addRow(id,userNUM, cowBull){
 
+                // <div id = "div-table-interactive" >
+                //   <div class="table-row">
+                //     <div class="table-col">ЧИСЛО</div>
+                //     <div class="table-col">КОР / БЫК</div>
+                //     <div class="table-col">ШАГ</div>
+                //   </div>
+                //   <div class="table-row" >
+                //     <div class="table-col">1234</div>
+                //     <div class="table-col">1 / 2</div>
+                //     <div class="table-col">1</div>
+                //   </div>
 
-
-    let tbody = document.getElementById(id).getElementsByTagName("tbody")[0];
-    let row = document.createElement("tr")
-    
-
-    // Создаем элемент <img> для замены "коровы"
+    // Создаем элемент <img> для замены "кор"
     let cowImage = document.createElement("img");
     cowImage.src = '/static/img/cow.png'; 
-    cowImage.alt = "К";
-    cowImage.style.width = "20px"; 
-    cowImage.style.height = "20px";
+    cowImage.alt = "Кор";
+    cowImage.className = "cow-bull-image";
     
-    // Создаем элемент <img> для замены "бы" (если нужно)
-    let bullImage = document.createElement("img");
-    bullImage.src = '/static/img/bull.png'; 
-    bullImage.alt = "Б";
-    bullImage.style.width = "20px"; 
-    bullImage.style.height = "20px";
+
+    
+    // Создаем элемент <img> для замены "бык"
+    let bullImage1 = document.createElement("img");
+    bullImage1.src = '/static/img/bull.png'; 
+    bullImage1.alt = "Бык";
+    bullImage1.className = "cow-bull-image";
+    
+
+                
+    let divTableInteractive = document.getElementById("div-table-interactive")
+
+    let divRow = document.createElement("div")
+    divRow.className = "table-row"
+
+    let divCol_1 = document.createElement("div")
+    divCol_1.className = "table-col bigger-font"
+    divCol_1.textContent = userNUM // userNUM
+    
+    
+    let divCol_2 = document.createElement("div")
+    divCol_2.className = "table-col bigger-font"
+   
+    divCol_2.textContent = cowBull[0] + " / " + cowBull[1]
+
+    let divCol_3 = document.createElement("div")
+    divCol_3.className = "table-col bigger-font"
+    divCol_3.textContent = step // step
+
+    divRow.appendChild(divCol_1)
+    divRow.appendChild(divCol_2)
+    divRow.appendChild(divCol_3)
+
+    // divTableInteractive.appendChild(divRow)
+
+    divTableInteractive.insertAdjacentElement('beforebegin', divRow);
 
 
-    let td1 = document.createElement("td")
-    let pre1 = document.createElement("pre")
-    pre1.className = "pre-in-table"
-    // pre1.appendChild(document.createTextNode(userNUM + ' ' + cowBull[0] + ' ко ' + cowBull[1] + ' бы ' + ' ' + step))
-    pre1.appendChild(document.createTextNode(userNUM + ' ' + cowBull[0] + ' '));
-    pre1.appendChild(cowImage);
-    pre1.appendChild(document.createTextNode(' ' + cowBull[1] + ' '));
-    pre1.appendChild(bullImage);
-    pre1.appendChild(document.createTextNode(' |' + step))
+
+
+
+
+
+    // let tbody = document.getElementById(id).getElementsByTagName("tbody")[0];
+    // let row = document.createElement("tr")
+    
+
+    
+
+
+    // let td1 = document.createElement("td")
+    // let pre1 = document.createElement("pre")
+    // pre1.className = "pre-in-table"
+    // // pre1.appendChild(document.createTextNode(userNUM + ' ' + cowBull[0] + ' ко ' + cowBull[1] + ' бы ' + ' ' + step))
+    // pre1.appendChild(document.createTextNode(userNUM + ' ' + cowBull[0] + ' '));
+    // pre1.appendChild(cowImage);
+    // pre1.appendChild(document.createTextNode(' ' + cowBull[1] + ' '));
+    // pre1.appendChild(bullImage);
+    // pre1.appendChild(document.createTextNode(' |' + step))
     
     
-    td1.appendChild(pre1)
+    // td1.appendChild(pre1)
     
     
     // let td1 = document.createElement("td")
@@ -227,10 +274,10 @@ function addRow(id,userNUM, cowBull){
     // let td3 = document.createElement('td')
     // td3.appendChild(document.createTextNode(step))
    
-    row.appendChild(td1);
+    // row.appendChild(td1);
     // row.appendChild(td2);
     // row.appendChild(td3);
-    tbody.appendChild(row);
+    // tbody.appendChild(row);
 
 
     let timeSpend = document.getElementById('time')

@@ -36,8 +36,8 @@ function startGame() {
 
     
     // Очищаем таблицу точнее раздел tbody           
-    let tbody = document.getElementById("myTable").getElementsByTagName("tbody")[0]
-    tbody.innerHTML = ''; 
+    // let tbody = document.getElementById("myTable").getElementsByTagName("tbody")[0]
+    // tbody.innerHTML = ''; 
     
     // Обнуляем все глобальные переменные
 

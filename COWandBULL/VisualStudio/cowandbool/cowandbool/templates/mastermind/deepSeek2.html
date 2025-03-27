@@ -7,9 +7,11 @@
 <!-- Основной контент -->
 
 <div class="container mt-5">
-    <h1>Выбранное число</h1>
-    <p>Загадано число из : <span id="selectedNumber"></span> цифр</p>
-    <a href="https://www.flaticon.com/free-icons/bull-market" title="bull market icons">Bull market icons created by juicy_fish - Flaticon</a>
+    <h1>Игра в "КОРОВ-БЫКОВ"</h1>
+    <p>Загадано число из : <span id="selectedNumber"></span> цифр. Вам нужно их отгадать.</p>
+    <p>В подбираемом числе нельзя прописать одинаковые цифры</p>
+    <p>"Коровы" - количество цифр угаданных, но не на своем месте</p>
+    <p>"Быки" - количество цифр угаданных и на своем месте</p>
     
 </div>
 
@@ -18,16 +20,19 @@
         <!-- Колонка игры -->
         <div class="col-12 col-md-8 game-column">
             
-            <div class="table-game">
+            <div class="table-game"  >
                 <button type="button" class="btn btn-primary" id ='openModalButton'  > Начать новую игру</button>
-
-                <div>
+                <!--<div class="table-game">  чтобы таблица продолжалась после автозаполнения   -->
+                
                   <div class="table-row">
                     <div class="table-col">ЧИСЛО</div>
-                    <div class="table-col">КОР / БЫК</div>
+                    <div class="table-col">
+                      <img class = "cow-bull-image" src="/static/img/cow.png" alt = 'cow'> /  
+                      <img class = "cow-bull-image" src="/static/img/bull.png" alt = 'bull'>
+                    </div>
                     <div class="table-col">ШАГ</div>
                   </div>
-                  <div class="table-row">
+                  <!-- <div class="table-row" >
                     <div class="table-col">1234</div>
                     <div class="table-col">1 / 2</div>
                     <div class="table-col">1</div>
@@ -41,34 +46,40 @@
                     <div class="table-col">1234</div>
                     <div class="table-col">1 / 2</div>
                     <div class="table-col">1</div>
-                  </div>
+                  </div> -->
+                
 
-                  <div class="table-row">
+                  <div class="table-row " id = "div-table-interactive">
                     <div class="table-col align-left">
-                      <input id="userInput" autocomplete="off" class="table-input">
+                      <input id="userInput" autocomplete="off" class="table-input" >
                     </div>
                     <div class="table-col">
-                      
+                    <span id = 'timetext'> </span> <span id = 'time'></span>  
                     </div>
                     <div class="table-col">
-                      <button class="btn btn-primary">Проверить</button>
+                      <button class="btn btn-primary" onclick="cowBullUserTry(); return false;">Проверить</button>
                     </div>
                   </div>
-                </div>
+                
+            </div>
+
+          
+            
+            
                     <!-- onclick="startGame();return false" -->
-                <table  id="myTable">
+                <!-- <table  id="myTable"> -->
                     <!-- <caption>
                       ИГРА в КОРОВ-БЫКОВ (4 цифры от 0 до 9)
                     </caption> -->
-                    <thead>
+                    <!-- <thead>
                         
                       
-                      <tr>
+                      <tr> -->
                         <!-- <th  scope="col">ВЫ НАЗВАЛИ ЧИСЛО</th>
                         <th scope="col">ЗДЕСЬ КОРОВ / БЫКОВ</th>
                         <th scope="col">ШАГ</th> -->
 
-                        <th scope="col" > <pre> ЧИСЛО ЗДЕСЬ КОР / БЫК    | ШАГ </pre></th>
+                        <!-- <th scope="col" > <pre> ЧИСЛО ЗДЕСЬ КОР / БЫК    | ШАГ </pre></th>
                         
                       </tr>
                     </thead>
@@ -81,8 +92,8 @@
                         
 
                       </tr>
-                      <tr>
-                        <div class = 'button-and-time'> 
+                      <tr> -->
+                        <!-- <div class = 'button-and-time'> 
 
                           <th class = 'button-and-time' >  <input id = 'userInput' class = 'userInputNumbers' autocomplete="off" > </input>
                         
@@ -90,16 +101,16 @@
                             
                           <span id = 'timetext'> </span> <span id = 'time'></span>  
                           
-                          </th> <!-- type="number"  -->
+                          </th>  type="number"  -->
                           <!-- <td id = 'time'></td> -->
-                        </div>
+                        <!-- </div>
                       </tr>
                       
                     </tfoot>
                     <p>
                       
                     </p>
-                </table>
+                </table> --> 
                 
 
                 
