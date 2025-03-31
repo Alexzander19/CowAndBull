@@ -3,6 +3,31 @@
 //NUM2  число проверяемое на соответствие загаданному
 // хотя нет разницы какое из них какое число
 
+function message_to_user_set(send_to_username) {
+    // alert(send_to_username);
+    
+    let message_to_username = document.getElementById('message_to_username');
+    let unset_message_to_username = document.getElementById('unset_message_to_username');
+
+    // message_to_username.TEXT_NODE = "send_to_username";
+    
+    message_to_username.textContent = "для " + send_to_username;
+    unset_message_to_username.textContent = " отменить"
+
+    return false;
+}
+
+function message_to_user_unset() {
+    
+    let message_to_username = document.getElementById('message_to_username');
+    let unset_message_to_username = document.getElementById('unset_message_to_username');
+    
+    message_to_username.textContent = "";
+    unset_message_to_username.textContent = "";
+
+    return false;
+}
+
 
 function countCowBull(NUM1,NUM2){
 
@@ -283,7 +308,7 @@ function addRow(id,userNUM, cowBull){
     let timeSpend = document.getElementById('time')
 
     //console.log(timeStart)
-    timeSpend.innerHTML = Math.floor(((performance.now() - timeStart) / 1000 / 60 )) + ' м. ' + Math.round((((performance.now() - timeStart) / 1000) % 60)) + ' c.';
+    timeSpend.innerHTML = Math.floor(((performance.now() - timeStart) / 1000 / 60 )) + 'м.' + Math.round((((performance.now() - timeStart) / 1000) % 60)) + 'c.';
 
     
 }

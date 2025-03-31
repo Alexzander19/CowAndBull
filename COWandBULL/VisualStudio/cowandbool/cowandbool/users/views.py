@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 
-from users.models import User
+from users.models import User, Message
 from users.forms import SignupForm
 
 # Create your views here.
@@ -27,3 +27,7 @@ def userlist(request):
   users=User.objects.all()
 
   return render(request,'users/userslist.html',{'users': users})
+
+def messages(request):
+  messages = Message.objects.all()
+  

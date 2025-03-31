@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from users.models import User
+from users.models import User, Message
 
 # Create your views here.
 
@@ -17,7 +17,8 @@ def test_show(request):
 def test_deepseek(request):
 
     users=User.objects.all()
-    return render(request,'mastermind/DeepSeek2.html',{'users': users})
+    messages=Message.objects.all()
+    return render(request,'mastermind/DeepSeek2.html',{'users': users, 'messages': messages})
 
 def fireworks(request):
 
