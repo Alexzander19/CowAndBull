@@ -39,7 +39,7 @@ class Message(models.Model):
   message = models.CharField(max_length=250)
   from_user = models.ForeignKey(User, related_name='from_user', on_delete=models.CASCADE)
   to_user = models.ForeignKey(User, related_name='to_user', on_delete=models.CASCADE,null=True,blank=True)
-  picture = models.ImageField(upload_to='static/img',null=True,blank=True)
+  picture = models.ImageField(upload_to='static/img',null=True,blank=True, default="")
 
   # null=True — разрешает хранить NULL в базе данных.
   # blank=True — позволяет оставлять поле пустым в формах и админке.
