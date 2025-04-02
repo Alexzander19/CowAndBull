@@ -1,5 +1,5 @@
 from django import forms
-from users.models import User
+from users.models import User, Message
 
 class SignupForm(forms.ModelForm):
   confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
@@ -60,3 +60,15 @@ class SignupForm(forms.ModelForm):
     if password != confirm_password:
       raise forms.ValidationError('Пароли не совпадают!')
     return cleaned_data
+  
+
+  # class Meta:
+  #   model = Message
+  #   fields = ['is_anonim']
+  #   widgets = {
+  #     'is_anonim': forms.CheckboxInput(attrs={
+       
+  #       'aria-label': 'Остаться инкогнито',
+  #     }),
+  #   }
+      

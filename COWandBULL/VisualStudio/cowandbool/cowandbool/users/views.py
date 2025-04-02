@@ -30,4 +30,35 @@ def userlist(request):
 
 def messages(request):
   messages = Message.objects.all()
+
+
+def send_message(request):
+  if request.method == 'POST':
+
+    if request.user.is_authenticated:
+      user = request.user
+      message = request.POST['message']
+      to_user_input = request.POST['message_to'] # на страничке INPUT не виден, но значение берем не из span, а из INPUT
+      is_anonim_check = request.POST.get('is_anonim','false') # если чекбокс не отмечен, то он в запросе POST не передается.
+                                                      # получает значение чекбокса или 'false', если чекбокс не был отмечен.
+
+      
+
+      if to_user_input != "" and to_user_input != 'Инкогнито':
+        to_user = User.objects.get(username=to_user_input)
+      else:
+        to_user = None
+
+      # if is_anonim_check == 'true':
+      #   is_anonim = True
+      # else:
+      #   is_anonim = False
+      # тоже самое:
+      is_anonim = is_anonim_check == 'true'
+
+      # description = request.POST['description']
+      new_message = Message.objects.create(message=message, from_user=user,is_anonim=is_anonim,to_user=to_user)
+      return redirect('deep')
+    
+  return render(request, 'deep')
   

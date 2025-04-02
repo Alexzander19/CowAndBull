@@ -6,24 +6,28 @@
 function message_to_user_set(send_to_username) {
     // alert(send_to_username);
     
-    let message_to_username = document.getElementById('message_to_username');
-    let unset_message_to_username = document.getElementById('unset_message_to_username');
+    let message_to_username = document.getElementById('message-to-username');
+    let unset_message_to_username = document.getElementById('unset-message-to-username');
+    let input = document.getElementById('input-message-to-username');
 
     // message_to_username.TEXT_NODE = "send_to_username";
     
     message_to_username.textContent = "для " + send_to_username;
-    unset_message_to_username.textContent = " отменить"
-
+    unset_message_to_username.textContent = " отменить";
+    input.value = send_to_username; // это для пердачи в БД. Сам инпут в HTML скрыт.
     return false;
 }
 
 function message_to_user_unset() {
     
-    let message_to_username = document.getElementById('message_to_username');
-    let unset_message_to_username = document.getElementById('unset_message_to_username');
+    let message_to_username = document.getElementById('message-to-username');
+    let unset_message_to_username = document.getElementById('unset-message-to-username');
+    let input = document.getElementById('input-message-to-username');
     
     message_to_username.textContent = "";
     unset_message_to_username.textContent = "";
+    input.value = ""; //Инпут, хоть и не видим на страничке, но в БД передается именно его значение
+
 
     return false;
 }

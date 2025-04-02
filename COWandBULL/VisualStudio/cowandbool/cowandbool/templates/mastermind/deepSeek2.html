@@ -27,8 +27,8 @@
                   <div class="table-row">
                     <div class="table-col">ЧИСЛО</div>
                     <div class="table-col">
-                      <img class = "cow-bull-image" src="/static/img/cow.png" alt = 'cow'> /  
-                      <img class = "cow-bull-image" src="/static/img/bull.png" alt = 'bull'>
+                      <img class = "cow-bull-image" src="{% static 'img/cow.png' %}" alt = 'cow'> /  
+                      <img class = "cow-bull-image" src="{% static 'img/bull.png' %}" alt = 'bull'>
                     </div>
                     <div class="table-col">ШАГ</div>
                   </div>
@@ -90,9 +90,6 @@
 
           {% for message in messages %}
 
-          
-
-
             {% if user.username == message.to_user.username %}
         <div class="row mb-3 bg-primary rounded-3" >
                 {% else %}
@@ -104,18 +101,16 @@
                   
                   <img 
                     {% if message.is_anonim %}
-                      src='/static/img/anonim.png'
+                      src="{% static 'img/anonim.png' %}"
                       onclick= "message_to_user_set('Инкогнито'); return false;" 
                     {% else %}
-                      src={{message.from_user.avatar_pic.url}}
-                      name= {{message.from_user.username}}
+                      src="{{message.from_user.avatar_pic.url}}"
+                      name= "{{message.from_user.username}}"
                       onclick= "message_to_user_set(this.getAttribute('name')); return false;"
 
                     {% endif %}
                       class="rounded-circle" width="40" height="40" alt="From" >
 
-                  
-              
               </div>
               
                 <div class="col">
@@ -140,8 +135,8 @@
                       </div>
 
                       {% if message.picture != "" %}
-                      <div class="picture_in_message">
-                         <img  src = /{{message.picture}}  alt="picture">
+                      <div class="picture-in-message">
+                         <img  src = "{{ message.picture.url }}"  alt="picture">
                       </div>
                       {% endif %}
 
@@ -159,34 +154,41 @@
   </div>
 
   <!-- Поле ввода -->
-  <div class="row bg-black border-top py-3">
+  <form class="input-group mt-3" action="{% url 'send_message' %}" method="post">
+    {% csrf_token %}
+      <div class="row bg-black border-top py-3">
 
-      <div class="row">
-        <div class="col"> 
-          <span id="message_to_username"> </span> <span id="unset_message_to_username" onclick="message_to_user_unset(); return false;"></span>
+        <div class="row">
+          <div class="col">
+            <input hidden="true" type="text"  id="input-message-to-username" name="message_to">
+            <span id="message-to-username" >  </span> <span id="unset-message-to-username" onclick="message_to_user_unset(); return false;"></span>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col">
+        <div class="row">
+          <div class="col">
           
-            <form id = 'chatMessageInput' class="input-group mt-3">
+            <div class="input-group mt-3" >
+                
               <!-- <label for="input_message">Введите сообщение:</label> -->
-              <input type="text" name ="input_message" class="form-control " placeholder="Введите сообщение..." aria-label="message">
+              <input type="text" name ="message" class="form-control " placeholder="Введите сообщение..." aria-label="message">
               <button class="btn btn-primary" type="submit">     
-                  <img src="/static/img/send_mail.png"  width="30" height="30" alt="send">
+                <img src="{% static 'img/send_mail.png' %}"  width="30" height="30" alt="send">
               </button>
-            </form>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class ="col"> 
-          <input type="checkbox" name="is_anonim" value="true" aria-label="message"><i> остаться инкогнито</i>
-        </div>
-      </div>
+        <div class="row">
+          <div class ="col"> 
+            <input type="checkbox" name="is_anonim"  value="true" aria-label="message"><i> остаться инкогнито</i>
           
+          </div>
+        </div>
+            
       </div>
+    </form>
+  
   </div>
 </div>
                    
