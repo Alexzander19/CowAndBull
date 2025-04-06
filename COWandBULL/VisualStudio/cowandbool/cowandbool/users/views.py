@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.http import JsonResponse
 
 from users.models import User, Message
 from users.forms import SignupForm
@@ -42,7 +43,9 @@ def send_message(request):
       is_anonim_check = request.POST.get('is_anonim','false') # если чекбокс не отмечен, то он в запросе POST не передается.
                                                       # получает значение чекбокса или 'false', если чекбокс не был отмечен.
 
-      
+      picture = request.FILES.get('image')
+      print("А вот и PICTURE:")
+      print(picture)
 
       if to_user_input != "" and to_user_input != 'Инкогнито':
         to_user = User.objects.get(username=to_user_input)
@@ -57,8 +60,22 @@ def send_message(request):
       is_anonim = is_anonim_check == 'true'
 
       # description = request.POST['description']
-      new_message = Message.objects.create(message=message, from_user=user,is_anonim=is_anonim,to_user=to_user)
+      new_message = Message.objects.create(message=message, from_user=user,is_anonim=is_anonim,to_user=to_user,picture=picture)
       return redirect('deep')
     
   return render(request, 'deep')
+
+
+
+  
+
+def delete_message(request, message_id):
+    if request.method == 'POST' and request.user.is_authenticated:
+        try:
+            message = Message.objects.get(id=message_id, from_user=request.user)
+            message.delete()
+            return JsonResponse({'status': 'success'})
+        except Message.DoesNotExist:
+            return JsonResponse({'status': 'error'}, status=404)
+    return JsonResponse({'status': 'error'}, status=403)
   

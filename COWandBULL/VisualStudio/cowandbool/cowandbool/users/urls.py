@@ -7,5 +7,6 @@ urlpatterns = [
 
     path('signup/', views.signup, name='signup'),
     path('userlist/',views.userlist,name='userlist'),
-    path('send_message/',views.send_message,name='send_message')
+    path('send_message/',views.send_message,name='send_message'),
+    path('delete-message/<int:message_id>/', views.delete_message, name='delete_message'),
 ]

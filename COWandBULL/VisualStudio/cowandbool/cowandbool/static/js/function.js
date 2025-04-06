@@ -1,7 +1,25 @@
-// Функция считает коров и быков
-//NUM1 число загаданное
-//NUM2  число проверяемое на соответствие загаданному
-// хотя нет разницы какое из них какое число
+
+// При нажатии на иконку загрузить фото, вызывает окно выбора изображения
+// и размещает фото сверху над вводом сообщения (выше span сообщение для)
+function upload_image(){
+
+    document.getElementById('fileInput').click();
+
+}
+
+function previewImage(input) {
+    if (input.files && input.files[0]) {
+        reader = new FileReader();
+        reader.onload = function(e) {
+            preview = document.getElementById('preview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
 
 function message_to_user_set(send_to_username) {
     // alert(send_to_username);
@@ -32,6 +50,10 @@ function message_to_user_unset() {
     return false;
 }
 
+// Функция считает коров и быков
+//NUM1 число загаданное
+//NUM2  число проверяемое на соответствие загаданному
+// хотя нет разницы какое из них какое число
 
 function countCowBull(NUM1,NUM2){
 
@@ -422,3 +444,82 @@ function inputcontrolBefor()
        
     
 }
+
+
+
+// Вслывающее окно с меню ОТВЕТИТЬ УДАЛИТЬ при нажатии на сообщение
+
+function showContextMenu(event, menuId) {
+    // Скрыть все меню
+    document.querySelectorAll('.message-context-menu').forEach(menu => {
+        menu.style.display = 'none';
+    });
+    
+    // Показать текущее меню
+    const menu = document.getElementById(menuId);
+    if(menu) {
+        menu.style.display = 'block';
+        menu.style.left = `${event.pageX}px`;
+        menu.style.top = `${event.pageY}px`;
+        event.stopPropagation();
+    }
+}
+
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+
+function deleteMessage(messageId) {
+
+    const csrftoken = getCookie('csrftoken');
+
+    if(confirm('Вы уверены что хотите удалить сообщение?')) {
+        // Отправка запроса на удаление
+        console.log(messageId);
+        str = '/user/delete-message/' + messageId+'/';
+        console.log(str);
+        fetch(str, {
+            method: 'POST',
+            headers: {
+                // 'X-CSRFToken': '{{ csrf_token }}',
+                // 'Content-Type': 'application/json'
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRFToken": csrftoken,
+            }
+        }).then(response => {
+            if(response.ok) location.reload();
+        });
+    }
+}
+
+
+
+
+function replyToMessage(username) {
+
+    document.getElementById('message-to-username').textContent = "на сообщение от " + username;
+    document.getElementById('unset-message-to-username').textContent = " отменить";
+    document.querySelector('[name="message_to"]').value = username;
+    document.querySelector('[name="message"]').focus();
+}
+
+// Скрывать меню при клике вне его
+document.addEventListener('click', () => {
+    document.querySelectorAll('.message-context-menu').forEach(menu => {
+        menu.style.display = 'none';
+    });
+});

@@ -12,7 +12,7 @@ class User(AbstractUser):
   # date_of_register = models.DateField(auto_now_add=True) не используем. Вместо него встроенный Date_joined
   # rating_in_game = models.PositiveSmallIntegerField(default=1)
   # rating_active = models.PositiveSmallIntegerField(default=1)
-  avatar_pic = models.ImageField(upload_to='static/img',default='static/img/none.bmp')
+  avatar_pic = models.ImageField(upload_to='static/img/avatar',default='static/img/avatar/none.bmp')
   little_about = models.TextField(max_length=500)
   status = models.CharField(max_length=20)
 
@@ -39,7 +39,7 @@ class Message(models.Model):
   message = models.CharField(max_length=250)
   from_user = models.ForeignKey(User, related_name='from_user', on_delete=models.CASCADE)
   to_user = models.ForeignKey(User, related_name='to_user', on_delete=models.CASCADE,null=True,blank=True)
-  picture = models.ImageField(upload_to='static/img',null=True,blank=True, default="")
+  picture = models.ImageField(upload_to='static/img/message',null=True,blank=True, default="")
 
   # null=True — разрешает хранить NULL в базе данных.
   # blank=True — позволяет оставлять поле пустым в формах и админке.
