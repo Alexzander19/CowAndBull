@@ -290,47 +290,6 @@ function addRow(id,userNUM, cowBull){
     divTableInteractive.insertAdjacentElement('beforebegin', divRow);
 
 
-
-
-
-
-
-    // let tbody = document.getElementById(id).getElementsByTagName("tbody")[0];
-    // let row = document.createElement("tr")
-    
-
-    
-
-
-    // let td1 = document.createElement("td")
-    // let pre1 = document.createElement("pre")
-    // pre1.className = "pre-in-table"
-    // // pre1.appendChild(document.createTextNode(userNUM + ' ' + cowBull[0] + ' ко ' + cowBull[1] + ' бы ' + ' ' + step))
-    // pre1.appendChild(document.createTextNode(userNUM + ' ' + cowBull[0] + ' '));
-    // pre1.appendChild(cowImage);
-    // pre1.appendChild(document.createTextNode(' ' + cowBull[1] + ' '));
-    // pre1.appendChild(bullImage);
-    // pre1.appendChild(document.createTextNode(' |' + step))
-    
-    
-    // td1.appendChild(pre1)
-    
-    
-    // let td1 = document.createElement("td")
-    // td1.appendChild(document.createTextNode(userNUM))
-    
-    // let td2 = document.createElement("td")
-    // td2.appendChild (document.createTextNode(cowBull[0] + ' коров ' + cowBull[1] + ' быков '))
-    
-    // let td3 = document.createElement('td')
-    // td3.appendChild(document.createTextNode(step))
-   
-    // row.appendChild(td1);
-    // row.appendChild(td2);
-    // row.appendChild(td3);
-    // tbody.appendChild(row);
-
-
     let timeSpend = document.getElementById('time')
 
     //console.log(timeStart)
@@ -490,7 +449,7 @@ function deleteMessage(messageId) {
     if(confirm('Вы уверены что хотите удалить сообщение?')) {
         // Отправка запроса на удаление
         console.log(messageId);
-        str = '/user/delete-message/' + messageId+'/';
+        let str = '/user/delete-message/' + messageId+'/';
         console.log(str);
         fetch(str, {
             method: 'POST',
@@ -501,10 +460,30 @@ function deleteMessage(messageId) {
                 "X-CSRFToken": csrftoken,
             }
         }).then(response => {
-            if(response.ok) location.reload();
+            if(response.ok) {
+                console.log("Мы на строке 464 if(response.ok)")
+                // location.reload(); НЕ НУЖНО ОБНОВЛЯТЬ СТРАНИЧКУ
+                let selector_string = `[div-message-id="${messageId}"]`;
+                console.log(selector_string);
+                const messageElement = document.querySelector(selector_string);
+                if(messageElement) {
+                    console.log("Мы на строке 468 if(messageElement)")
+                    messageElement.innerHTML = "Удалено";
+                }
+            } 
+            
+            else {
+                alert('Ошибка при удалении сообщения');
+            }
+            
+        }).catch(error => {
+            console.error('Error:', error);
         });
     }
 }
+
+
+
 
 
 

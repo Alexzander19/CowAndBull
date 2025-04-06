@@ -90,12 +90,12 @@
 
         {% for message in messages %}
 
-            {% if user.username == message.to_user.username %}
+          
 
-          <div class="row mb-3 bg-primary rounded-3" >
-            {% else %}
-          <div class="row mb-3">
-            {% endif %}
+          <div div-message-id = "{{message.id}}" class="row mb-3  
+            {% if user.username == message.to_user.username %} 
+            bg-primary rounded-3 
+            {% endif %}" >
 
 
               <div class="col-auto" >
