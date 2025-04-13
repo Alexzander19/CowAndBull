@@ -248,7 +248,7 @@ function addRow(id,userNUM, cowBull){
 
     // Создаем элемент <img> для замены "кор"
     let cowImage = document.createElement("img");
-    cowImage.src = '/static/img/cow.png'; 
+    cowImage.src = '/static/img/system/cow.png'; 
     cowImage.alt = "Кор";
     cowImage.className = "cow-bull-image";
     
@@ -256,7 +256,7 @@ function addRow(id,userNUM, cowBull){
     
     // Создаем элемент <img> для замены "бык"
     let bullImage1 = document.createElement("img");
-    bullImage1.src = '/static/img/bull.png'; 
+    bullImage1.src = '/static/img/system/bull.png'; 
     bullImage1.alt = "Бык";
     bullImage1.className = "cow-bull-image";
     
@@ -448,9 +448,8 @@ function deleteMessage(messageId) {
 
     if(confirm('Вы уверены что хотите удалить сообщение?')) {
         // Отправка запроса на удаление
-        console.log(messageId);
+        
         let str = '/user/delete-message/' + messageId+'/';
-        console.log(str);
         fetch(str, {
             method: 'POST',
             headers: {
@@ -461,13 +460,13 @@ function deleteMessage(messageId) {
             }
         }).then(response => {
             if(response.ok) {
-                console.log("Мы на строке 464 if(response.ok)")
+              
                 // location.reload(); НЕ НУЖНО ОБНОВЛЯТЬ СТРАНИЧКУ
                 let selector_string = `[div-message-id="${messageId}"]`;
                 console.log(selector_string);
                 const messageElement = document.querySelector(selector_string);
                 if(messageElement) {
-                    console.log("Мы на строке 468 if(messageElement)")
+                
                     messageElement.innerHTML = "Удалено";
                 }
             } 
@@ -481,6 +480,127 @@ function deleteMessage(messageId) {
         });
     }
 }
+
+// Фунуция отправки сообщения.
+document.getElementById('chatForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const csrftoken = getCookie('csrftoken');
+    
+    try {
+        const response = await fetch("/user/send_message/", {
+            method: 'POST',
+            headers: {
+                "X-CSRFToken": csrftoken
+            },
+            body: formData
+        });
+        
+        if(response.ok) {
+            // Очистка формы
+            this.reset();
+            document.getElementById('preview').style.display = 'none';
+            document.getElementById('message-to-username').textContent = '';
+            
+            // Динамическое добавление сообщения
+            const data = await response.json();
+            // addNewMessage(data);
+            // updateAllChat(data); // переписываем все сообщения чата
+            refreshMessages();
+        } else {
+            alert('Ошибка при отправке сообщения');
+        }
+    } catch(error) {
+        console.error('Error:', error);
+    }
+});
+
+function addNewMessage(data) {
+    const messagesContainer = document.querySelector('.overflow-y-auto');
+    console.log('ЗАШЛИ в addNewMessage')
+    
+    const messageHtml = `
+        <div class="row mb-3 ${data.is_owner ? 'bg-primary rounded-3' : ''}">
+            <div class="col-auto">
+                <img src="${data.avatar}" class="image-from" alt="From">
+            </div>
+            <div class="col">
+                <div class="p-3 shadow-sm rounded-3 message-wrapper">
+                    <div class="text-muted small">${data.username}</div>
+                    ${data.picture ? `<img src="${data.picture}" class="picture-in-message">` : ''}
+                    <div>${data.message}</div>
+                    <div class="text-end text-muted small mt-2">${data.time}</div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    messagesContainer.insertAdjacentHTML('beforeend', messageHtml);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+
+// После отправки сообщения обновляем весь чат ( загружаем все сообщения заново)
+// Конечно не обновляя страничку
+
+function refreshMessages() {
+    fetch('/user/get-messages-html/')
+        .then(response => response.text())
+        .then(html => {
+            const container = document.getElementById('div-all-messages-in-chat');
+            container.innerHTML = html;
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+//  не допеределана до конца.
+
+// function sendMessage(messageId) {
+
+//     const csrftoken = getCookie('csrftoken');
+
+
+    //   user = user.username;
+    //   message = document.getElementById()
+    //   to_user_input = request.POST['message_to'] # на страничке INPUT не виден, но значение берем не из span, а из INPUT
+    //   is_anonim_check = request.POST.get('is_anonim','false') # если чекбокс не отмечен, то он в запросе POST не передается.
+    //                                                   # получает значение чекбокса или 'false', если чекбокс не был отмечен.
+
+//       picture = request.FILES.get('image')
+
+    
+//         let str = '/user/send_message/';
+//         fetch(str, {
+//             method: 'POST',
+//             headers: {
+//                 // 'X-CSRFToken': '{{ csrf_token }}',
+//                 // 'Content-Type': 'application/json'
+//                 "X-Requested-With": "XMLHttpRequest",
+//                 "X-CSRFToken": csrftoken,
+//             }
+//         }).then(response => {
+//             if(response.ok) {
+              
+//                 // location.reload(); НЕ НУЖНО ОБНОВЛЯТЬ СТРАНИЧКУ
+//                 let selector_string = `[div-message-id="${messageId}"]`;
+//                 console.log(selector_string);
+//                 const messageElement = document.querySelector(selector_string);
+//                 if(messageElement) {
+                
+//                     messageElement.innerHTML = "Удалено";
+//                 }
+//             } 
+            
+//             else {
+//                 alert('Ошибка при удалении сообщения');
+//             }
+            
+//         }).catch(error => {
+//             console.error('Error:', error);
+//         });
+    
+// }
 
 
 
@@ -502,3 +622,6 @@ document.addEventListener('click', () => {
         menu.style.display = 'none';
     });
 });
+
+// Обновлять сообщения каждые 5 секунд
+setInterval(refreshMessages, 5000);

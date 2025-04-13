@@ -85,7 +85,7 @@
 
   <!-- Область сообщений -->
   <div class="row flex-grow-1 overflow-y-auto" style="background-color: black;">
-      <div class="col py-3" style="background-color: black;">
+      <div class="col py-3" style="background-color: black;" id = "div-all-messages-in-chat">
           <!-- Сообщение от других -->
 
         {% for message in messages %}
@@ -177,7 +177,8 @@
 
 
   <!-- Поле ввода -->
-  <form class="input-group mt-3" action="{% url 'send_message' %}" method="post" enctype="multipart/form-data">
+   <!-- action="{% url 'send_message' %}"  -->
+  <form class="input-group mt-3" method="post" id="chatForm" enctype="multipart/form-data">
     {% csrf_token %}
       <div class="row bg-black border-top py-3 " style="padding-right: 0;">
 
